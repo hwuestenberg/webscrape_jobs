@@ -1,6 +1,7 @@
 Small helper to find possible PhD positions at Universities
-Currently possible:
-- KTH
+
+Working websites:
+- KTH Stockholm
 
 
 Work in progress...
