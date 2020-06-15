@@ -6,17 +6,20 @@ from selenium.common.exceptions import NoSuchElementException
 import pandas as pd
 
 
-# Initialise webdriver
-driver = webdriver.Firefox()
 
+# ALL_ LISTS
+job_name, location, department, description, deadline = list(), list(), list(), list(), list()
 
 ###################
 ###  NTNU
 ###################
+# Initialise webdriver
+driver = webdriver.Firefox()
+
 driver.get("https://www.ntnu.edu/vacancies")
 
 # Initialise lists
-job_name, location, department, description, deadline = list(), list(), list(), list(), list()
+# job_name, location, department, description, deadline = list(), list(), list(), list(), list()
 
 # Push button to open all vacancies
 driver.find_element_by_xpath("//button[@class='btn btn-outline-light btn-lg btn-block']").click()
@@ -42,23 +45,22 @@ description = [ele for i, ele in enumerate(description) if i in idx]
 department = [ele for i, ele in enumerate(department) if i in idx]
 deadline = [ele for i, ele in enumerate(deadline) if i in idx]
 
-
 # Close browser
 driver.quit()
-
-
-# RECONNECT ERROR ?!
+del driver
 
 
 
 ###################
 ###  KTH
 ###################
+driver = webdriver.Firefox()  # RECONNECT ERROR > Instantiate new driver instead
+
 # Get kth website
 driver.get("https://www.kth.se/en/om/work-at-kth/doktorander-1.572201")
 
 # Initialise lists
-# job_name, location, department, deadline = list(), list(), list(), list()
+# job_name, location, department, description, deadline = list(), list(), list(), list(), list()
 
 # Read amount of table entries
 all_tds = driver.find_elements_by_xpath('//tbody//tr//td')
@@ -77,6 +79,14 @@ for i in range(num_of_elements):
 
 # Close browser
 driver.quit()
+del driver
+
+
+
+###################
+###  PANDAS
+###################
+# Merge all_job_list into single list
 
 
 # Read into pandas frame
